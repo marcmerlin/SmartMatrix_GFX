@@ -101,7 +101,6 @@ https://github.com/sparkfunX/RGBmatrixPanelHalfScan is an alternate library for 
 Adafruit::GFX on RGB panels. It uses DMA on ESP32 to do mostly CPU free updates. It is a proof of concept that only offers
 64x32 as of right now, but could be extended to more. Contrary to SmartMatrix it does full frame PWM (SmartMatrix does line
 level PWM which can yield different artifacts on camera).  
-Color depth is only 4 bits per pixel compared to 8bpp or higher on SmartMatrix, but again for most things, it's sufficient. 
 This library is ESP32 only.
 
 - https://github.com/pixelmatix/SmartMatrix is the fanciest RGB Panel library by far. It however does not offer GFX API
