@@ -33,6 +33,8 @@ All other demos however use this common config.h which can be adjusted to use:
 
 See: https://github.com/marcmerlin/SmartMatrix_GFX/blob/master/examples/config.h  
 Sample usage: https://github.com/marcmerlin/SmartMatrix_GFX/blob/master/examples/fontzoom/fontzoom.ino
+Many more demos compatible with SmartMatrix::GFX:  
+https://github.com/marcmerlin/FastLED_NeoMatrix_SmartMatrix_LEDMatrix_GFX_Demos/
 
 
 RGB Panels vs NeoPixels and other addressable LEDs
