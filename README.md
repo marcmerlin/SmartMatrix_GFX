@@ -36,6 +36,7 @@ Sample usage: https://github.com/marcmerlin/SmartMatrix_GFX/blob/master/examples
 Many more demos compatible with SmartMatrix::GFX:  
 https://github.com/marcmerlin/FastLED_NeoMatrix_SmartMatrix_LEDMatrix_GFX_Demos/
 
+Here is an example of https://github.com/marcmerlin/FastLED_NeoMatrix_SmartMatrix_LEDMatrix_GFX_Demos/blob/master/FastLED/Sublime_Demos/Sublime_Demos.ino running on 2 64x64 Matrices. Top one is run by teensy 3.6 with SmartShield v4, and bottom one is ESP32 on a protoboard with level shifters:
 ![image](https://github.com/marcmerlin/SmartMatrix_GFX/blob/master/SmartMatrix_GFX.jpg)
 
 
