@@ -36,6 +36,8 @@ Sample usage: https://github.com/marcmerlin/SmartMatrix_GFX/blob/master/examples
 Many more demos compatible with SmartMatrix::GFX:  
 https://github.com/marcmerlin/FastLED_NeoMatrix_SmartMatrix_LEDMatrix_GFX_Demos/
 
+![image](https://github.com/marcmerlin/SmartMatrix_GFX/blob/master/SmartMatrix_GFX.jpg)
+
 
 RGB Panels vs NeoPixels and other addressable LEDs
 --------------------------------------------------
