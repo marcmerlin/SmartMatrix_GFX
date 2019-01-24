@@ -77,7 +77,7 @@ to a more limited set of RGB panels but with DMA support on ESP32 (read below fo
 
 FastLED is not a 2D API per se, but used along with https://github.com/marcmerlin/FastLED_NeoMatrix you can get GFX API
 support while adding FastLED primitives like nscale and fade.  
-SmartMatrix_GFX adds support for both GFX and FastLED API support to the SmartMatrix backend.
+SmartMatrix::GFX adds support for both GFX and FastLED API support to the SmartMatrix backend.
 
 If you will ever only use SmartMatrix, you should use its superior API.  
 If you'd like to be compatible with other backends, including better FastLED supported matrices (Neopixels and better
@@ -93,8 +93,8 @@ For an example of the same code on multiple GFX backends:
 - https://github.com/marcmerlin/SmartMatrix_GFX/tree/master/examples/MatrixGFXDemo
 
 
-Adafruit_RGB_matrix_Panel vs SmartMatrix vs ESP32-RGB64x32MatrixPanel-I2S-DMA vs SmartMatrix_GFX 
-------------------------------------------------------------------------------------------------
+Adafruit_RGB_matrix_Panel vs SmartMatrix vs ESP32-RGB64x32MatrixPanel-I2S-DMA vs SmartMatrix::GFX 
+-------------------------------------------------------------------------------------------------
 The first 3 libraries all support HUB75 RGB Panels, although not in the same way. 
 
 - https://github.com/adafruit/RGB-matrix-Panel is the original library from Adafruit. It uses bit banging, offers 4bits per pixel and is hardcoded in assembly for some older arduino chips (arduino 328p, ATmega). It is limited to single RGB Panels (16x32 and 32x32) and mostly older and slower arduino chips. This lib does not work with newer faster chips (teensy, ESP8266, ESP32), 64x64 panels with E address line, or chained panels.  
