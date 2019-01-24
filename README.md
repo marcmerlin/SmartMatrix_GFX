@@ -1,5 +1,5 @@
-SmartMatrix GFX, Control Scan Based Matrices with SmartMatrix and Adafruit GFX API
-==================================================================================
+SmartMatrix::GFX, Control Scan Based Matrices with SmartMatrix and Adafruit GFX API
+===================================================================================
 
 Adafruit::GFX compatible library for scan based matrices.
 This library requires SmartMatrix, Adafruit_GFX, and FastLED libraries.
