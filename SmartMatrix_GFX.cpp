@@ -96,6 +96,12 @@ uint16_t SmartMatrix_GFX::Color(uint8_t r, uint8_t g, uint8_t b) {
 // it (call with no value)!
 
 // Pass raw color value to set/enable passthrough
+void SmartMatrix_GFX::setPassThruColor(CRGB c) {
+  
+  passThruColor = c.r*65536+c.g*256+c.b;
+  passThruFlag  = true;
+}
+
 void SmartMatrix_GFX::setPassThruColor(uint32_t c) {
   passThruColor = c;
   passThruFlag  = true;
@@ -227,11 +233,11 @@ void SmartMatrix_GFX::drawPixel(int16_t x, int16_t y, uint32_t color) {
   _leds[XY(x,y)] = color;
 }
 
-void SmartMatrix_GFX::drawPixel(int16_t x, int16_t y, CRGB color) {
+void SmartMatrix_GFX::drawPixel(int16_t x, int16_t y, CRGB c) {
 
   if((x < 0) || (y < 0) || (x >= _width) || (y >= _height)) return;
 
-  _leds[XY(x,y)] = color.r*65536+color.g*256+color.b;
+  _leds[XY(x,y)] = c.r*65536+c.g*256+c.b;
 }
 
 
@@ -246,6 +252,8 @@ void SmartMatrix_GFX::setRemapFunction(uint16_t (*fn)(uint16_t, uint16_t)) {
   remapFn = fn;
 }
 
+// After setting gamma, this is used with
+//  CRGB color = CRGB(matrix->gamma[red], matrix->gamma[green], matrix->gamma[blue]);
 void SmartMatrix_GFX::precal_gamma(float gam) {
   for (uint8_t i =0; i<255; i++) {
     gamma[i] = applyGamma_video(i, gam);
