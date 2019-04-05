@@ -70,6 +70,10 @@ void SmartMatrix_GFX::begin() {
   Serial.println(numpix);
 }
 
+void SmartMatrix_GFX::newLedsPtr(CRGB *new_leds_ptr) {
+  _leds = new_leds_ptr;
+}
+
 // Expand 16-bit input color (Adafruit_GFX colorspace) to 24-bit (NeoPixel)
 // (w/gamma adjustment)
 static uint32_t expandColor(uint16_t color) {

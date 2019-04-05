@@ -116,6 +116,7 @@ class SmartMatrix_GFX : public Adafruit_GFX {
 
 
   void begin(); // no-op in this lib, left for compat
+  void newLedsPtr(CRGB *);
 
 
  private:
