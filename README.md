@@ -6,8 +6,21 @@ This library requires SmartMatrix, Adafruit_GFX, and FastLED libraries.
 - https://github.com/pixelmatix/SmartMatrix
 - https://github.com/adafruit/Adafruit-GFX-Library
 - https://github.com/FastLED/FastLED  
+- https://github.com/marcmerlin/LEDMatrix is optional if you have code that uses that API
+
 (technically it can work without FastLED, but it's convenient to use the FastLED CRGB representation
 and in turn, it gives extra primitives that can be used against pixels, defined here: https://github.com/FastLED/FastLED/blob/master/pixeltypes.h#L90 )
+
+This library offers the same API than https://github.com/marcmerlin/FastLED_NeoMatrix/ , but for a
+SmartMatrix backend (the mapping function not being that useful since SmartMatrix takes care of giving
+X/Y coordinate mapping for you, but in theory if you have a weird SmartMatrix panel chaining layout not 
+supported by SmartMatrix itself, SmartMatrix::GFX's mapping function could take care of this for you).
+
+As explained below, you can target these 3 APIs and SmartMatrix::GFX will support them on top of SmartMatrix:
+- Adafruit::GFX (or Adafruit::NeoMatrix)
+- FastLED / FastLED::NeoMatrix
+- LEDMatrix
+- Of course, native SmartMatrix code will work too, but that code won't be back compatible with FastLED backends
 
 You can find a lot of demo code here:  
 https://github.com/marcmerlin/FastLED_NeoMatrix_SmartMatrix_LEDMatrix_GFX_Demos
@@ -31,7 +44,7 @@ All other demos however use this common config.h which can be adjusted to use:
 - FastLED NeoMatrix ESP8266 parallel output
 - FastLED NeoMatrix ESP32 8 channel RMT parallel output (Sam driver)
 - FastLED NeoMatrix ESP32 16-24 channel big banging parallel output (Yves driver)
-- FastLED NeoMAtrix serial output is not present but trivial to add.
+- FastLED NeoMatrix serial output is not present but trivial to add.
 
 See: https://github.com/marcmerlin/SmartMatrix_GFX/blob/master/examples/config.h  
 Sample usage: https://github.com/marcmerlin/SmartMatrix_GFX/blob/master/examples/fontzoom/fontzoom.ino
