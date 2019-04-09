@@ -10,7 +10,7 @@ This library requires SmartMatrix, Adafruit_GFX, and FastLED libraries.
 and in turn, it gives extra primitives that can be used against pixels, defined here: https://github.com/FastLED/FastLED/blob/master/pixeltypes.h#L90 )
 
 You can find a lot of demo code here:  
-https://github.com/marcmerlin/FastLED_NeoMatrix_SmartMatrix_LEDMatrix_GFX
+https://github.com/marcmerlin/FastLED_NeoMatrix_SmartMatrix_LEDMatrix_GFX_Demos
 
 This code was taken from FastLED_NeoMatrix and adapted to work with the SmartMatrix library. SmartMatrix is used to drive row scan panels. They are not as good as NeoPixel based panels which you can run with FastLED::NeoMatrix instead, but you should consider SmartMatrix driven panels if one of those reasons apply to you:
 * They are cheaper given that the pixels do not have logic (they also don't stay on unless you keep refreshing them)
