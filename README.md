@@ -1,6 +1,9 @@
 SmartMatrix::GFX, Control Scan Based Matrices with SmartMatrix and Adafruit GFX API
 ===================================================================================
 
+Please have a look at this blog post for more details and pictures:
+http://marc.merlins.org/perso/arduino/post_2019-04-01_SmartMatrix_-SmartMatrix-Shield-v4-for-Teensy_-ESP32-shield-with-level-shifter_-and-SmartMatrix_GFX.html
+
 Adafruit::GFX compatible library for scan based matrices.
 This library requires SmartMatrix, Adafruit_GFX, and FastLED libraries.
 - https://github.com/pixelmatix/SmartMatrix
@@ -33,6 +36,16 @@ This code was taken from FastLED_NeoMatrix and adapted to work with the SmartMat
 That being said, I do recommend that you use Neopixel matrices whenever you can as for their much better display quality, brightness, and being easier to drive, but if you decide to use scan based matrices for the reasons above and you'd like Adafruit::GFX compatibility, then this library is for you.
 
 It also offers FastLED compatibility if you'd like to use those primitives against your virtual display (like nblend, fade, etc...).
+
+Here is an example of FastLED LEDMatrix code running on top of SmartMatrix::GFX. This is an example of 64x96 mirrored for a total of 128x96:
+![image](https://user-images.githubusercontent.com/1369412/55855436-61d3e780-5b1c-11e9-8678-826bb89fc5d6.png)
+
+SmartMatrix and SmartMatrix::GFX on ESP32
+-----------------------------------------
+Have a look at http://marc.merlins.org/perso/arduino/post_2019-04-01_SmartMatrix_-SmartMatrix-Shield-v4-for-Teensy_-ESP32-shield-with-level-shifter_-and-SmartMatrix_GFX.html#ESP32 for tips on how to use SmartMatrix on ESP32.  
+Here is a picture of protoboard with level shifters vs a nicer shielf from Jason Coon:
+![image](https://user-images.githubusercontent.com/1369412/55855377-2fc28580-5b1c-11e9-8839-f6991883da81.png)
+
 
 Basic GFX Demo and Matrix config (SmartMatrix or FastLED NeoMatrix)
 -------------------------------------------------------------------
