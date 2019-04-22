@@ -54,7 +54,6 @@
 
 #include "FastLED.h"
 
-//SmartMatrix_GFX::SmartMatrix_GFX(RGB888 *leds, uint8_t w, uint8_t h): 
 SmartMatrix_GFX::SmartMatrix_GFX(CRGB *leds, uint8_t w, uint8_t h, void (* showptr)()): 
   Adafruit_GFX(w, h),
   type(0), matrixWidth(w), matrixHeight(h), tilesX(0), tilesY(0), remapFn(NULL){ 
@@ -101,7 +100,6 @@ uint16_t SmartMatrix_GFX::Color(uint8_t r, uint8_t g, uint8_t b) {
 
 // Pass raw color value to set/enable passthrough
 void SmartMatrix_GFX::setPassThruColor(CRGB c) {
-  
   passThruColor = c.r*65536+c.g*256+c.b;
   passThruFlag  = true;
 }

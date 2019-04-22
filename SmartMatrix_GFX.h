@@ -28,23 +28,9 @@
  #include <pins_arduino.h>
 #endif
 #include <Adafruit_GFX.h>
-
-// Be compatible with struct CRGB in FastLED/pixeltypes.h which is uint8_t[3]
-struct RGB888 {
-  uint8_t raw[3];
-
-  /// Array access operator to index into the crgb object
-  inline uint8_t& operator[] (uint8_t x) __attribute__((always_inline))
-  {
-      return raw[x];
-  }
-
-  /// Array access operator to index into the crgb object
-  inline const uint8_t& operator[] (uint8_t x) const __attribute__((always_inline))
-  {
-      return raw[x];
-  }
-};
+// Ideally this lib wouldn't require FastLED, but in order to be compatible
+// with FastLED Matrix code, it's much easier to just use its CRGB definition
+#include "FastLED.h"
 
 // Matrix layout information is passed in the 'matrixType' parameter for
 // each constructor (the parameter immediately following is the LED type
@@ -80,16 +66,12 @@ struct RGB888 {
 #define NEO_TILE_ZIGZAG        0x80 // Tile order reverses between lines
 #define NEO_TILE_SEQUENCE      0x80 // Bitmask for tile line order
 
-#include "FastLED.h"
 class SmartMatrix_GFX : public Adafruit_GFX {
 
  public:
   // pre-computed gamma table
   uint8_t gamma[256];
 
-  // I'd love to make my FastLED independent uint24_t definition that is compatible
-  // with FastLED's CRGB, but I haven't succeeded, so for now I'm using FastLED.
-  //SmartMatrix_GFX(RGB888 *, uint8_t w, uint8_t h);
   SmartMatrix_GFX(CRGB *, uint8_t w, uint8_t h, void (* showptr)());
 
   int XY(int16_t x, int16_t y); // compat with FastLED code, returns 1D offset
@@ -126,7 +108,6 @@ class SmartMatrix_GFX : public Adafruit_GFX {
   // into the SmartMatrix object, and pass that function to us by pointer.
   void (* _show)();
 
-  //RGB888 *_leds;
   CRGB *_leds;
   const uint8_t
     type;
@@ -136,7 +117,6 @@ class SmartMatrix_GFX : public Adafruit_GFX {
     numpix,
     (*remapFn)(uint16_t x, uint16_t y);
 
-  uint32_t _malloc_size;
   uint32_t passThruColor;
   boolean  passThruFlag = false;
 };
