@@ -5,7 +5,7 @@ Please have a look at this blog post for more details and pictures:
 http://marc.merlins.org/perso/arduino/post_2019-04-01_SmartMatrix_-SmartMatrix-Shield-v4-for-Teensy_-ESP32-shield-with-level-shifter_-and-SmartMatrix_GFX.html
 
 Adafruit::GFX compatible library for scan based matrices.  
-To use Adafruit::GFX, see https://learn.adafruit.com/adafruit-gfx-graphics-library/graphics-primitives  
+To use Adafruit::GFX, see https://learn.adafruit.com/adafruit-gfx-graphics-library/graphics-primitives  and https://github.com/marcmerlin/SmartMatrix_GFX/blob/master/examples/MatrixGFXDemo/MatrixGFXDemo.ino#L388
 
 This library requires SmartMatrix, Adafruit_GFX, and FastLED libraries.
 - https://github.com/pixelmatix/SmartMatrix
