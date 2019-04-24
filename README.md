@@ -4,7 +4,13 @@ SmartMatrix::GFX, Control Scan Based Matrices with SmartMatrix and Adafruit GFX 
 Please have a look at this blog post for more details and pictures:
 http://marc.merlins.org/perso/arduino/post_2019-04-01_SmartMatrix_-SmartMatrix-Shield-v4-for-Teensy_-ESP32-shield-with-level-shifter_-and-SmartMatrix_GFX.html
 
-Adafruit::GFX compatible library for scan based matrices.
+Adafruit::GFX compatible library for scan based matrices.  
+Please see https://learn.adafruit.com/adafruit-neopixel-uberguide/neomatrix-library for how to use this library
+as well as https://learn.adafruit.com/adafruit-gfx-graphics-library/graphics-primitives .
+
+Example demo code: 
+https://github.com/marcmerlin/FastLED_NeoMatrix/blob/master/examples/MatrixGFXDemo/MatrixGFXDemo.ino388
+
 This library requires SmartMatrix, Adafruit_GFX, and FastLED libraries.
 - https://github.com/pixelmatix/SmartMatrix
 - https://github.com/adafruit/Adafruit-GFX-Library
@@ -26,7 +32,8 @@ As explained below, you can target these 3 APIs and SmartMatrix::GFX will suppor
 - Of course, native SmartMatrix code will work too, but that code won't be back compatible with FastLED backends
 
 You can find a lot of demo code here:  
-https://github.com/marcmerlin/FastLED_NeoMatrix_SmartMatrix_LEDMatrix_GFX_Demos
+https://github.com/marcmerlin/FastLED_NeoMatrix_SmartMatrix_LEDMatrix_GFX_Demos as well as
+a big integrated demo here: https://github.com/marcmerlin/NeoMatrix-FastLED-IR
 
 This code was taken from FastLED_NeoMatrix and adapted to work with the SmartMatrix library. SmartMatrix is used to drive row scan panels. They are not as good as NeoPixel based panels which you can run with FastLED::NeoMatrix instead, but you should consider SmartMatrix driven panels if one of those reasons apply to you:
 * They are cheaper given that the pixels do not have logic (they also don't stay on unless you keep refreshing them)
