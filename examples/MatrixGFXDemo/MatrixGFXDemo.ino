@@ -2,8 +2,13 @@
 // By Marc MERLIN <marc_soft@merlins.org>
 // Contains code (c) Adafruit, license BSD
 
+// Please see the other demos and FastLED_NeoMatrix_SmartMatrix_LEDMatrix_GFX_Demos/neomatrix_config.h
+// on how to avoid having all the config pasted in all your scripts.
+
 #include <Adafruit_GFX.h>
 #include <SmartMatrix_GFX.h>
+// CHANGEME, see MatrixHardware_ESP32_V0.h in SmartMatrix/src
+#define GPIOPINOUT 3
 #include <SmartLEDShieldV4.h>  // comment out this line for if you're not using SmartLED Shield V4 hardware (this line needs to be before #include <SmartMatrix3.h>)
 #include <SmartMatrix3.h>
 
@@ -22,7 +27,7 @@
 /// SmartMatrix Defines
 #define COLOR_DEPTH 24                  // known working: 24, 48 - If the sketch uses type `rgb24` directly, COLOR_DEPTH must be 24
 #define kMatrixWidth  64       // known working: 32, 64, 96, 128
-#define kMatrixHeight 64       // known working: 16, 32, 48, 64
+#define kMatrixHeight 32       // known working: 16, 32, 48, 64
 const uint8_t kRefreshDepth = 24;       // known working: 24, 36, 48
 const uint8_t kDmaBufferRows = 2;       // known working: 2-4, use 2 to save memory, more to keep from dropping frames and automatically lowering refresh rate
 const uint8_t kPanelType = SMARTMATRIX_HUB75_32ROW_MOD16SCAN;   // use SMARTMATRIX_HUB75_16ROW_MOD8SCAN for common 16x32 panels
@@ -40,23 +45,16 @@ const int defaultBrightness = (100*255)/100;        // full (100%) brightness
 #define mh kMatrixHeight
 #define NUMMATRIX (kMatrixWidth*kMatrixHeight)
 
-CRGB leds[kMatrixWidth*kMatrixHeight];
+CRGB *matrixleds;
 
+void show_callback();
+SmartMatrix_GFX *matrix = new SmartMatrix_GFX(matrixleds, mw, mh, show_callback);
 // Sadly this callback function must be copied around with this init code
 void show_callback() {
-    for (uint16_t y=0; y<kMatrixHeight; y++) {
-	for (uint16_t x=0; x<kMatrixWidth; x++) {
-	    CRGB led = leds[x + kMatrixWidth*y];
-	    // rgb24 defined in MatrixComnon.h
-	    backgroundLayer.drawPixel(x, y, { led.r, led.g, led.b } );
-	}
-    }
-    // This should be zero copy
-    // that said, copy or no copy is about the same speed in the end.
-    backgroundLayer.swapBuffers(false);
+    backgroundLayer.swapBuffers(true);
+    matrixleds = (CRGB *)backgroundLayer.backBuffer();
+    matrix->newLedsPtr(matrixleds);
 }
-
-SmartMatrix_GFX *matrix = new SmartMatrix_GFX(leds, mw, mh, show_callback);
 
 // ========================== CONFIG END ======================================================
 
@@ -657,6 +655,8 @@ void setup() {
     matrixLayer.addLayer(&backgroundLayer); 
     matrixLayer.begin();
     matrixLayer.setBrightness(defaultBrightness);
+    // This sets the neomatrix and LEDMatrix pointers
+    show_callback();
     matrixLayer.setRefreshRate(240);
     backgroundLayer.enableColorCorrection(true);
 
