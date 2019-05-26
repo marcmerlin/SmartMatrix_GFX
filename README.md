@@ -4,14 +4,17 @@ SmartMatrix::GFX, Control Scan Based Matrices with SmartMatrix and Adafruit GFX 
 Please have a look at this blog post for more details and pictures:
 http://marc.merlins.org/perso/arduino/post_2019-04-01_SmartMatrix_-SmartMatrix-Shield-v4-for-Teensy_-ESP32-shield-with-level-shifter_-and-SmartMatrix_GFX.html
 
-Adafruit::GFX compatible library for scan based matrices.  
-Please see https://learn.adafruit.com/adafruit-neopixel-uberguide/neomatrix-library for how to use this library
-as well as https://learn.adafruit.com/adafruit-gfx-graphics-library/graphics-primitives .
+Adafruit_GFX and FastLED-compatible library for RGBPanels (row scan matrices).   
+This library requires FastLED and Adafruit_GFX libraries as well as this base class library:
+- https://github.com/marcmerlin/Framebuffer_GFX
+Please look at the Framebuffer_GFX page for details on how the APIs work and you can also look the example demo code:
+- https://github.com/marcmerlin/FastLED_NeoMatrix/blob/master/examples/MatrixGFXDemo/MatrixGFXDemo.ino
 
 Example demo code: 
 https://github.com/marcmerlin/FastLED_NeoMatrix/blob/master/examples/MatrixGFXDemo/MatrixGFXDemo.ino388
 
 This library requires SmartMatrix, Adafruit_GFX, and FastLED libraries.
+- https://github.com/marcmerlin/Framebuffer_GFX (base class)
 - https://github.com/pixelmatix/SmartMatrix
 - https://github.com/adafruit/Adafruit-GFX-Library
 - https://github.com/FastLED/FastLED  
