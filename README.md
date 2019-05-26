@@ -166,6 +166,6 @@ so you don't need level shifters.
 shield that includes level shifters: https://docs.pixelmatix.com/SmartMatrix/shieldref.html
 
 - If you are using ESP32, you can use SmartMatrx/SmartMatrix::GFX or ESP32-RGB64x32MatrixPanel-I2S-DMA . You should then use 
-this shield to get level shifters: https://www.evilgeniuslabs.org/hexadecimal-nodemcu-32s-wi-fi-and-ble-led-controller . t
+this shield to get level shifters: https://www.evilgeniuslabs.org/hexadecimal-nodemcu-32s-wi-fi-and-ble-led-controller . It
 does not plug directly into the RGBpanel, but at least you can wire directly to the level shifters and not worry about the
 ever changing pin order of the ESP32 chips.
