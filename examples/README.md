@@ -3,7 +3,7 @@ https://github.com/marcmerlin/FastLED_NeoMatrix_SmartMatrix_LEDMatrix_GFX_Demos/
 
 Please run git submodule update --init --recursive
 
-MatrixGFXDemo shows how to use this drier directly without worrying
+MatrixGFXDemo shows how to use this driver directly without worrying
 about the combined neomatrix_config.h backend.
 
 Other examples under FastLED_NeoMatrix_SmartMatrix_LEDMatrix_GFX_Demos use the
