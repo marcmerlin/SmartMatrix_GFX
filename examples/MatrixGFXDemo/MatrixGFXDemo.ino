@@ -7,10 +7,21 @@
 
 #include <Adafruit_GFX.h>
 #include <SmartMatrix_GFX.h>
-// CHANGEME, see MatrixHardware_ESP32_V0.h in SmartMatrix/src
-#define GPIOPINOUT 3
-#include <SmartLEDShieldV4.h>  // comment out this line for if you're not using SmartLED Shield V4 hardware (this line needs to be before #include <SmartMatrix3.h>)
-#include <SmartMatrix3.h>
+
+// CHANGEME for ESP32, see MatrixHardware_ESP32_V0.h in SmartMatrix/src
+#define GPIOPINOUT 8
+#ifdef SMARTMATRIXV3
+    #include <SmartLEDShieldV4.h>
+    #include <SmartMatrix3.h>
+#else // As of 2020/11, SmartMatrix v4 has a new interface
+    // https://community.pixelmatix.com/t/smartmatrix-library-4-0-changes-to-matrixhardware-includes/709
+    #ifdef ESP32
+        #include <MatrixHardware_ESP32_V0.h> // ESP32
+    #else
+        #include <MatrixHardware_KitV4.h>    // Teensy shield v4
+    #endif
+    #include <SmartMatrix.h>
+#endif
 
 // Choose your prefered pixmap
 //#include "heart24.h"
@@ -27,7 +38,7 @@
 /// SmartMatrix Defines
 #define COLOR_DEPTH 24                  // known working: 24, 48 - If the sketch uses type `rgb24` directly, COLOR_DEPTH must be 24
 #define kMatrixWidth  64       // known working: 32, 64, 96, 128
-#define kMatrixHeight 32       // known working: 16, 32, 48, 64
+#define kMatrixHeight 96       // known working: 16, 32, 48, 64
 const uint8_t kRefreshDepth = 24;       // known working: 24, 36, 48
 const uint8_t kDmaBufferRows = 2;       // known working: 2-4, use 2 to save memory, more to keep from dropping frames and automatically lowering refresh rate
 const uint8_t kPanelType = SMARTMATRIX_HUB75_32ROW_MOD16SCAN;   // use SMARTMATRIX_HUB75_16ROW_MOD8SCAN for common 16x32 panels
@@ -652,6 +663,7 @@ void loop() {
 }
 
 void setup() {
+    Serial.begin(115200);
     matrixLayer.addLayer(&backgroundLayer); 
     matrixLayer.begin();
     matrixLayer.setBrightness(defaultBrightness);
@@ -665,7 +677,6 @@ void setup() {
     backgroundLayer.fillScreen( {0x80, 0x80, 0x80} );
     backgroundLayer.swapBuffers();
 
-    Serial.begin(115200);
     Serial.print("Matrix Size: ");
     Serial.print(mw);
     Serial.print(" ");
@@ -682,6 +693,7 @@ void setup() {
     delay(3000);
     matrix->clear();
 #endif
+#if 0
     Serial.println("Running blue/red speed test");
 // You can't use millis to time frame fresh rate because it uses cli() which breaks millis()
 // So I use my stopwatch to count 1000 displays and that's good enough
@@ -701,6 +713,7 @@ void setup() {
     count_pixels();
     Serial.println("Count pixels done");
     delay(1000);
+#endif
 }
 
 // vim:sts=4:sw=4
