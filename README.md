@@ -4,6 +4,9 @@ SmartMatrix::GFX, Control Scan Based Matrices with SmartMatrix and Adafruit GFX 
 Please have a look at this blog post for more details and pictures:
 http://marc.merlins.org/perso/arduino/post_2019-04-01_SmartMatrix_-SmartMatrix-Shield-v4-for-Teensy_-ESP32-shield-with-level-shifter_-and-SmartMatrix_GFX.html
 
+for details, how these panels actually works have a look on this sparkfun post.they have a nice article if you want to understand in depth.
+https://www.sparkfun.com/news/2650
+
 Adafruit_GFX and FastLED-compatible library for RGBPanels (row scan matrices).   
 This library requires FastLED and Adafruit_GFX libraries as well as this base class library:
 - https://github.com/marcmerlin/Framebuffer_GFX
@@ -42,7 +45,7 @@ This code was taken from FastLED_NeoMatrix and adapted to work with the SmartMat
 * They are cheaper given that the pixels do not have logic (they also don't stay on unless you keep refreshing them)
 * One big reason to use them is that you can have much higher density (2.5 to 5mm per pixel vs 10mm for the typical neopixel matrix)
 * scan panels are 50 to 70% cheaper per pixel than neopixel based matrices.
-
+*these panels have different scan rate bassed on panel type most common are 1/4, 1/8 1/16 and 1/32 scan rates.
 That being said, I do recommend that you use Neopixel matrices whenever you can as for their much better display quality, brightness, and being easier to drive, but if you decide to use scan based matrices for the reasons above and you'd like Adafruit::GFX compatibility, then this library is for you.
 
 It also offers FastLED compatibility if you'd like to use those primitives against your virtual display (like nblend, fade, etc...).
@@ -145,7 +148,8 @@ https://github.com/sparkfunX/RGBmatrixPanelHalfScan is an alternate library for 
 - https://github.com/mrfaptastic/ESP32-RGB64x32MatrixPanel-I2S-DMA offers a
 totally different approach to offering Adafruit::GFX on RGB panels. It uses
 DMA on ESP32 to do mostly CPU free updates. It is a proof of concept that
-only offers 64x32 as of right now, but could be extended to more. Contrary to
+only offers 64x32 as of right now,this library does not support 1/8 scan 
+rate panels.but could be extended to more. Contrary to
 SmartMatrix it does full frame PWM (SmartMatrix does line level PWM which can
 yield different artifacts on camera).  This library is ESP32 only.
 
@@ -157,6 +161,8 @@ up to at least a total resolution of 128x128).  SmartMatrix was written
 for teensy (teensy 3.5 or 3.6 greatly recommended for panels 64x64
 or bigger), however its teensylc branch actually supports ESP32. See
 https://community.pixelmatix.com/t/smartmatrix-library-esp32-port/272
+they have a nice community here,
+https://community.pixelmatix.com/
 
 - https://github.com/marcmerlin/SmartMatrix_GFX is not a hardware support
 library, it adds a FastLED and Adafruit::GFX support to SmartMatrix.  
@@ -166,6 +172,8 @@ Framebuffer::GFX to create a FastLED CRGB backed virtual framebuffer in which
 graphics are rendered as if you were using FastLED::NeoMatrix and end up
 directly in the SmartMatrix backend buffer which ends up being compatible in
 type if you use RGB888 (24bit).
+how it works:
+have a look at neomatrix_config.h. it explains pretty much every thing,here you need to define smartMatrix/neo_matrix/fast _led arguments.
 
 Microcontroller support and level shifters
 ------------------------------------------
@@ -184,3 +192,5 @@ greatly recommended that you use level shifters (74HCT245 or equivalent).
 - If you are using ESP32, you can use SmartMatrix/SmartMatrix::GFX or ESP32-RGB64x32MatrixPanel-I2S-DMA . 
 You could then use this shield to get level shifters: https://www.evilgeniuslabs.org/hexadecimal-nodemcu-32s-wi-fi-and-ble-led-controller .  
 It does not plug directly into the RGBpanel, but at least you can wire directly to the level shifters and not worry about the ever changing pin order of the ESP32 chips.
+for smartmatrix have a look on this blog post.
+http://marc.merlins.org/perso/arduino/post_2019-04-01_SmartMatrix_-SmartMatrix-Shield-v4-for-Teensy_-ESP32-shield-with-level-shifter_-and-SmartMatrix_GFX.html
