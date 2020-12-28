@@ -43,10 +43,10 @@ a big integrated demo here: https://github.com/marcmerlin/NeoMatrix-FastLED-IR
 
 This code was taken from FastLED_NeoMatrix and adapted to work with the SmartMatrix library. SmartMatrix is used to drive row scan panels. They are not as good as NeoPixel based panels which you can run with FastLED::NeoMatrix instead, but you should consider SmartMatrix driven panels if one of those reasons apply to you:
 * They are cheaper given that the pixels do not have logic (they also don't stay on unless you keep refreshing them)
-* One big reason to use them is that you can have much higher density (2.5 to 5mm per pixel vs 10mm for the typical neopixel matrix)
-* scan panels are 50 to 70% cheaper per pixel than neopixel based matrices.
-*these panels have different scan rate bassed on panel type most common are 1/4, 1/8 1/16 and 1/32 scan rates.
-That being said, I do recommend that you use Neopixel matrices whenever you can as for their much better display quality, brightness, and being easier to drive, but if you decide to use scan based matrices for the reasons above and you'd like Adafruit::GFX compatibility, then this library is for you.
+* One big reason to use them is that you can have much higher density (1.5 to 5mm per pixel vs 10mm for the typical neopixel matrix)
+* scan panels are 50 to 70% cheaper per pixel than neopixel based matrices (but they have different scan rate bassed on panel type most common are 1/4, 1/8 1/16 and 1/32 scan rates, so they use less power, are less bright, and can show unsightly refresh bars in pictures)
+
+While I do recommend that you use Neopixel matrices whenever you can as for their much better display quality, brightness, and being easier to drive, if you decide to use scan based matrices for the reasons above and you'd like Adafruit::GFX compatibility, then this library is for you.
 
 It also offers FastLED compatibility if you'd like to use those primitives against your virtual display (like nblend, fade, etc...).
 
@@ -147,10 +147,9 @@ https://github.com/sparkfunX/RGBmatrixPanelHalfScan is an alternate library for 
 
 - https://github.com/mrfaptastic/ESP32-RGB64x32MatrixPanel-I2S-DMA offers a
 totally different approach to offering Adafruit::GFX on RGB panels. It uses
-DMA on ESP32 to do mostly CPU free updates. It is a proof of concept that
-only offers 64x32 as of right now,this library does not support 1/8 scan 
-rate panels.but could be extended to more. Contrary to
-SmartMatrix it does full frame PWM (SmartMatrix does line level PWM which can
+DMA on ESP32 to do mostly CPU free updates. This library does not support as
+many kinds of panels, lie 1/8 scan rate panels, but could be extended to more. 
+Contrary to SmartMatrix it does full frame PWM (SmartMatrix does line level PWM which can
 yield different artifacts on camera).  This library is ESP32 only.
 
 - https://github.com/pixelmatix/SmartMatrix is the fanciest RGB Panel
@@ -161,8 +160,7 @@ up to at least a total resolution of 128x128).  SmartMatrix was written
 for teensy (teensy 3.5 or 3.6 greatly recommended for panels 64x64
 or bigger), however its teensylc branch actually supports ESP32. See
 https://community.pixelmatix.com/t/smartmatrix-library-esp32-port/272
-they have a nice community here,
-https://community.pixelmatix.com/
+They have a nice community here: https://community.pixelmatix.com/
 
 - https://github.com/marcmerlin/SmartMatrix_GFX is not a hardware support
 library, it adds a FastLED and Adafruit::GFX support to SmartMatrix.  
@@ -172,8 +170,15 @@ Framebuffer::GFX to create a FastLED CRGB backed virtual framebuffer in which
 graphics are rendered as if you were using FastLED::NeoMatrix and end up
 directly in the SmartMatrix backend buffer which ends up being compatible in
 type if you use RGB888 (24bit).
-how it works:
-have a look at neomatrix_config.h. it explains pretty much every thing,here you need to define smartMatrix/neo_matrix/fast _led arguments.
+
+How to integrate SmartMatrix::GFX with your project
+---------------------------------------------------
+Have a look at neomatrix_config.h.it explains pretty much everything. It is
+where you need to define smartMatrix/neomatrix/fasled arguments.
+For more details as to why neomatrix_config.h, see 
+http://marc.merlins.org/perso/arduino/post_2020-03-16_Framebuffer_GFX_-Choosing-between-its-3-2D-APIs_-FastLED-XY_-NeoMatrix_-and-LEDMatrix_-and-detail-of-its-many-supported-hardware-backends.html  
+and lots of demos here:  
+https://github.com/marcmerlin/FastLED_NeoMatrix_SmartMatrix_LEDMatrix_GFX_Demos
 
 Microcontroller support and level shifters
 ------------------------------------------
@@ -192,5 +197,6 @@ greatly recommended that you use level shifters (74HCT245 or equivalent).
 - If you are using ESP32, you can use SmartMatrix/SmartMatrix::GFX or ESP32-RGB64x32MatrixPanel-I2S-DMA . 
 You could then use this shield to get level shifters: https://www.evilgeniuslabs.org/hexadecimal-nodemcu-32s-wi-fi-and-ble-led-controller .  
 It does not plug directly into the RGBpanel, but at least you can wire directly to the level shifters and not worry about the ever changing pin order of the ESP32 chips.
-for smartmatrix have a look on this blog post.
+
+For ESP32 and/or Smartmatrix with SmartMatrix::GFX have a look on this blog post.
 http://marc.merlins.org/perso/arduino/post_2019-04-01_SmartMatrix_-SmartMatrix-Shield-v4-for-Teensy_-ESP32-shield-with-level-shifter_-and-SmartMatrix_GFX.html
